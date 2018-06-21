@@ -9,8 +9,10 @@ var phone_icon = "<img  src='https://www.oceanhousing.com/wp-content/uploads/201
 var save_icon = "<img  src='http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-File-Save-icon.png' alt='Save' style='width:20px;'>";
 var vip_icon = "<img  src='http://badgemonkey.com/images/vip.jpg' alt='Save' style='width:20px;'>";
 var hide_icon = "<img  src='https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png' alt='Save' style='width:20px;'>";
+var rec_icon = "<img  src='http://myflare911.com/wp-content/uploads/2013/05/Record-icon-my-flare-alert.png' alt='Record' style='width:20px;'>";
 var meet_icon = "<img  src='' alt='M&G' style='width:20px;'>";
-
+var denver_pgi = "<strong> 91 303 318 6789</strong>";
+var london_pgi = " <strong>9011 44 207 715 5260</strong>"; 
 
 function whosyrdada1(row)
 // this is the function called when you add a note
@@ -60,7 +62,7 @@ function whosyrdada2(row)
 // of the cumulative block 
 {
   // navigage up to the top level of this div s
-    var i=row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+    var i=row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
 //    var i=row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
 //    var i=row.parentNode.parentNode.parentNode.parentNode.parentNode;
     i['id'] = document.getElementById('vc_num').value;
@@ -79,7 +81,7 @@ function whosyrdada2(row)
 
 
     console.log('row.parentNode.parentNode.parentNode.parentNode:') ;
-    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.rows[2].cells[0].children[0].innerText   ) ;
+//    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.rows[2].cells[0].children[0].innerText   ) ;
 
 console.log('i',i);
 //    row.parentNode.parentNode.parentNode.parentNode.parentNode.rows[2].cells[0].children[0].innerText  += 
@@ -178,10 +180,21 @@ function insRow(thing)
     new_row.cells[0].innerHTML   = document.getElementById('aliasinput').value;
     if (document.getElementById('aliasinput').value == 'audio') {
         new_row.cells[0].innerHTML   = phone_icon;
-    	document.getElementById('audioline').innerHTML = phone_icon;
-    }
+        console.log('bridge',document.getElementById('bridge').value);
+        if (document.getElementById('bridge').value == "den_cms_01"
+          || document.getElementById('bridge').value == "den_cms_02" ) {
+          new_row.cells[0].innerHTML   += denver_pgi;
+        }
+        if (document.getElementById('bridge').value == "lon_acano_01"
+          || document.getElementById('bridge').value == "lon_acano_02" ) {
+          new_row.cells[0].innerHTML   += london_pgi;
+        }
 
-    new_row.cells[1].innerText   = document.getElementById('sitenameinput').value;
+        new_row.cells[1].innerHTML   = "<strong>" + document.getElementById('sitenameinput').value + "</strong>";
+//    	document.getElementById('audioline').innerHTML = phone_icon;
+    } else {
+        new_row.cells[1].innerText   = document.getElementById('sitenameinput').value;
+    }
     new_row.cells[2].innerHTML     = "<a href='#' onclick='deleteRow(this);'>" + x_icon + "</a>";
 
 //    console.log(getElementsByTagName('input')[0]);
@@ -215,26 +228,9 @@ function dog_notes  (thing) {
     console.log(x[2].cells[0].children[0].innerText);
     console.log(x[1].cells[0].childNodes[1].childNodes[6].value);
 
-//        var x = elem.getElementById('notes');
-//    console.log(elem);
-//    console.log(x);
-//    coi
-//    alert(x[2].cells[0]);/wk
-//    console.log(x[2].cells[0]);
-
-//    x[2].cells[0] += 
-//    document.getElementById('notes') += 
-//    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.rows[2].cells[0].children[0].innerText   ) ;
-
-console.log( time  + ' ' + x[1].cells[0].childNodes[1].childNodes[6].value + "\n" );
-    
-console.log( x[2].cells[0].children[0].innerText );
-
     x[2].cells[0].children[0].innerText += 
-  time  + ' ' 
-    + x[1].cells[0].childNodes[1].childNodes[6].value + "\n";
-//   + document.getElementById("note_entry").value + "<br />";
-
+      time  + ' ' 
+      + x[1].cells[0].childNodes[1].childNodes[8].value + "\n";
    document.getElementById("note_entry").value = '';
 }
 
@@ -263,6 +259,17 @@ var copyfields = function () {
       document.getElementById('vip').innerHTML = '';
   }
 
+
+  if (document.getElementById('rec_check').checked == true) {
+      document.getElementById('rec').innerHTML = rec_icon;
+  } else {
+      document.getElementById('rec').innerHTML = '';
+  }
+
+
+
+
+
   if (document.getElementById('bridge').value != '' 
     && document.getElementById('vc_num').value != '') {
     var bridge = document.getElementById('bridge').value;
@@ -272,26 +279,27 @@ var copyfields = function () {
       || bridge ==  'lon_acano_02') {
       dialdetails = 'SIP/H.323: ' + vcnum + '@216.98.185.12\n';
       dialdetails += 'Skype: ' + vcnum + '@lync.emea.vbmeet.com\n';
-      dialdetails += 'Web: https://emea.vbmeet.com/?id=' +  vcnum;
+      dialdetails += 'Web: https://emea.vbmeet.com/?id=' +  vcnum + '\n';
     }
 
     if (bridge ==  'den_cms_01' 
       || bridge ==  'den_cms_02') {
       dialdetails = 'SIP/H.323: ' + vcnum + '@216.98.188.98\n';
       dialdetails += 'Skype: ' + vcnum + '@lync.amer.vbmeet.com\n';
-      dialdetails += 'Web: https://amer.vbmeet.com/?id=' +  vcnum;
+      dialdetails += 'Web: https://amer.vbmeet.com/?id=' +  vcnum + '\n';
+      dialdetails += 'Web: https://amer.vbmeet.com/?id=' +  vcnum + '\n';
     }
 
     if (bridge ==  'lon_8510' 
       || bridge ==  'lon_8710_1'
       || bridge ==  'lon_8710_2') {
 
-      dialdetails = 'SIP/H323: ' + vcnum + '@216.98.185.12';
+      dialdetails = 'SIP/H323: ' + vcnum + '@216.98.185.12\n';
 
       if (bridge == 'lon_8510') {
-          dialdetails += 'MOVI: 024' + vcnum + '@joinbyvideo.com';
+          dialdetails += 'MOVI: 024' + vcnum + '@joinbyvideo.com\n';
       } else {
-          dialdetails += 'MOVI: 023' + vcnum + '@joinbyvideo.com';
+          dialdetails += 'MOVI: 023' + vcnum + '@joinbyvideo.com\n';
       }
     }
 
@@ -314,9 +322,6 @@ var copyfields = function () {
           dialdetails += 'MOVI: 013' + vcnum + '@216.98.185.12\n';
     }
     
-    if (bridge ==  'den_8510' ) {
-          dialdetails += 'MOVI: 019' + vcnum + '@216.98.185.12\n';
-    }
 
     if (bridge ==  'aus_4210' 
       || bridge ==  'ffm_8510'
@@ -348,23 +353,30 @@ confnum@lync.amer.joinbyvideo.com
   document.getElementById('meeting_start').innerText  = document.getElementById('start_time').value;
   document.getElementById('meeting_end').innerText  = document.getElementById('end_time').value;
 
-//  var myStartDate = new Date( document.getElementById('start_time').innerText - (15 * MS_PER_MINUTE));
-//  var myStartDate = new Date( document.getElementById('start_time').value )-  new Date("00:15:00");
-//  var myStartDate = new Date( document.getElementById('start_time').value  - (15 * 1000));
-//  alert(myStartDate);
-//  document.getElementById('meeting_setup').innerText  = myStartDate;
 
   var endDate = document.getElementById('start_time').value;
 
   var startdate = new Date(endDate);
-  document.getElementById('meeting_start').innerHTML = startdate.toLocaleTimeString('en-US', { hour12: false ,hour: "numeric", 
+
+  document.getElementById('meeting_start').innerHTML = 
+  startdate.toLocaleTimeString('en-US', { hour12: false ,hour: "numeric", 
                                              minute: "numeric"});
 
   var durationInMinutes = document.getElementById('setup_time').value 
   	? document.getElementById('setup_time').value 
   	: 15;
 
+// wind the clock back setup time
   startdate.setMinutes(startdate.getMinutes() - durationInMinutes);
+
+
+// get the date after winding the clock so it works right around midnight
+
+  document.getElementById('meeting_date').innerText  =  
+    startdate.toDateString('en-US', { hour12: false ,hour: "numeric", 
+                                             minute: "numeric"});
+
+
   document.getElementById('meeting_setup').innerHTML = startdate.toLocaleString('en-US', { hour12: false,hour: "numeric", 
                                              minute: "numeric"} );
 }

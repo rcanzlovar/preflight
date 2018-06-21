@@ -68,18 +68,21 @@ input[type=submit]:hover {
         <!-- Add your site or application content here -->
         <h3>
         <img src="http://docksidegroup.com.au/images/logos/logo.png" style="float: right;">
-      EY Preflight builder</h3>  
-      <a href='#' onclick=" document.getElementById('inputform').style.display =  'inline';">show</a> &nbsp;
-  <a href='#' onclick=" document.getElementById('inputform').style.display =  'none';">hide</a>
+      <a href='#' onclick=" document.getElementById('inputform').style.display =  'inline';"><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='+' style='width:20px;'></a>
+      EY Preflight Builder</h3>  
 
 <div class="container">
 <div id="inputform">
+  <a href='#' onclick=" document.getElementById('inputform').style.display =  'none';">
+  <img src="https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png" width="20px" alt='Hide Form'>
+  </a>
+
 <div id="vchead">
-    <label for="vc_num">VC num</label>
+    <label for="vc_num">VC#</label>
     <input type="text" id="vc_num" name="firstname" placeholder="VC number" onchange="copyfields();" style='width:120px;'>
 
 
-    <label for="bridge">Video Bridge</label>
+    <label for="bridge">Bridge</label>
     <select id="bridge" name="bridge" onchange="copyfields();" style='width:200px;'>
       <option value="lon_acano_01">London Acano 01</option>
       <option value="lon_acano_02">London Acano 02</option>
@@ -102,23 +105,24 @@ input[type=submit]:hover {
     <br />
 
     <label for="start_time">Start Time</label>
-    <input type="text" id="start_time" style="width: 150px;" placeholder="start time.." onchange="copyfields();" >
+    <input type="text" id="start_time" style="width: 150px;" placeholder="mm/dd/yyyy hh:mm" onchange="copyfields();" >
     <label for="end_time">End Time</label>
-    <input type="text" id="end_time" style="width: 80px;" placeholder="end time.." onchange="copyfields();" >
+    <input type="text" id="end_time" style="width: 80px;" placeholder="hh:mm" onchange="copyfields();" >
     <label for="setup_time">Setup Time</label>
     <input type="text" id="setup_time" style="width: 40px;" placeholder="setup time.."  value="15" onchange="copyfields();">
     <br />
-    <label for="vip_check">VIP conference</label>
-    <input type="checkbox" id="vip_check" value='vip' onchange="copyfields()">
-</div> <!-- left -->
-
-<div id="legsform">
   <input type="text" id="aliasinput" name="alias" placeholder="site alias.." style="width: 150px;"
    onchange="if (isThingSaved({'id':this.value,'stash':'sites'})){ getThing({'id':this.value,'stash':'sites','result':'sitenameinput'})}">
   <input type="text" id="sitenameinput" name="sitename" placeholder="site name..">
-  <a href="#" onclick='insRow(this);'><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' 
-  alt='Add' style='width:20px;'></a>
+  <a href="#" onclick='insRow(this);'><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='Add' style='width:20px;'></a>
+  <br />
   
+    <label for="vip_check">VIP</label>
+    <input type="checkbox" id="vip_check" value='vip' onchange="copyfields()">
+    <label for="mg_check">M&amp;G</label>
+    <input type="checkbox" id="mg_check" value='mg' onchange="copyfields()">
+    <label for="rec_check">Record</label>
+    <input type="checkbox" id="rec_check" value='rec' onchange="copyfields()">
 </div>
 <br />
 <div id='conferencesummary'>
@@ -133,27 +137,31 @@ input[type=submit]:hover {
 </span>
 </div>
 <div style="float: right;">
-SETUP: <span id='meeting_setup' style="font-size: x-large;font-weight: 900;"></span><br />Meet: <span id='meeting_start'></span>&nbsp;-&nbsp;<span id='meeting_end'></span>
+<span id='meeting_date' style="font-size: x-large;"></span>
+<span id='meeting_setup' style="font-size: x-large;font-weight: 900;"></span><br />Meet: <span id='meeting_start'></span>&nbsp;-&nbsp;<span id='meeting_end'></span>
 </div>
 
 <div id='dialdetails' style="text-align: center;"></div>
-<span id='killme' style="float:left;">
-<span id='audioline' style="float:left;"></span>
-<span id='meetgreet' style="float:left;"></span>
+<span id='killme' style="float:left;"></span>
+<span id='audioline' style="float:right;"></span>
+<span id='meetgreet' style="float:right;"></span>
 <span id='vip' style="float:right;"></span>
+<span id='rec' style="float:right;"></span>
+<span id='mg' style="float:right;"></span>
   <a href='#' onclick="noteshower(this);"><img src="http://ccotex.com/wp-content/uploads/2014/11/interview-lg-icon.png" alt="show note entry" style='width:20px;'></a>
-  <a href='#' onclick="notehider(this);"><img src="https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png" width="20px" alt='Hide'></a>
 
 
 
   <a href='#' onclick="killpreflight(this);"><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/delete-icon.png' alt='Delete' style='width:20px;'></a>
-  <a href="#" onclick='whosyrdada2(this);'><img  src='http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-File-Save-icon.png' alt='Save' style='width:20px;'></a>
+  <a href="#" onclick='whosyrdada2(this);'><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='Add' style='width:20px;'></a>
 </span>
   </td></tr>
 
 <tr id="notesrow" style="display: none;"><td colspan=3>
 <div id="notesform">
-    <label for="note_entry">Notes</label> <a href='#' onclick="whosyrdada1(this);dog_notes(this);"><img src='http://ccotex.com/wp-content/uploads/2014/11/interview-lg-icon.png' style='width:20px;' alt='Notes'></a><br />
+    <label for="note_entry">Notes</label> <a href='#' onclick="whosyrdada1(this);dog_notes(this);">
+  <img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='Add' style='width:20px;'></a>
+  <a href='#' onclick="notehider(this);"><img src="https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png" width="20px" alt='Hide'></a><br />
     <textarea id="note_entry" name="note_entry" placeholder="Write something.." style="height:100px; width: 500px;"></textarea>
   </div>
 </td></tr>
