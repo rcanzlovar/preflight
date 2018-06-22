@@ -6,6 +6,7 @@ var stash = 'router'
 // Save Bookmark
 // saveThing({id:'15145',name:'main and 17th',stash:'mystops'})
 function isThingSaved(e){
+  let match = 0;
   if ( typeof e == 'object' && typeof e.id == 'string') { id = e.id }
   if ( typeof e == 'object' && typeof e.stash == 'string') { stash = e.stash }
 
@@ -20,8 +21,21 @@ function isThingSaved(e){
       // Remove from array
       return 1;
     }
+
+    // test for partial string - does the saved thing start with the given id? 
+    const mything = things[i].id;
+    if (mything.startsWith(id)) {
+      match += 1;
+//      alert ("yay yay yay");
+//      return 1;
+    }
   }
-  return 0;
+  console.log('match',match);
+  if (match == 1) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 
 function saveThing(e){
@@ -102,6 +116,7 @@ function getThing(e){
   if ( typeof e == 'object' && typeof e.id == 'string') { id = e.id }
   if ( typeof e == 'object' && typeof e.stash == 'string') { stash = e.stash }
   if ( typeof e == 'object' && typeof e.result == 'string') { result = e.result }
+  if ( typeof e == 'object' && typeof e.alias == 'string') { alias = e.alias }
 
 //don't save these at all 
     if (id == 'audio') {return 0}
@@ -122,6 +137,7 @@ function getThing(e){
   // Build output
   thingsResult.innerHTML = '';
   for(var i = 0; i < things.length; i++){
+    let match = 0;
     var name = things[i].name;
     var lid = things[i].id;
 //    console.log('id,,lid,name',id,lid,name);
@@ -131,6 +147,22 @@ function getThing(e){
       document.getElementById(result).value = name;
       return name;
     }
+    if (lid.startsWith(id)) {
+      match += 1;
+
+//      alert ("yay yay yay");
+//      return 1;
+    }
+    if (match == 1) {
+      console.log('lid=',lid);
+      document.getElementById(alias).value = lid;
+      document.getElementById(result).value = name;
+
+    }
+
+
+
+
 /*
 */
   }

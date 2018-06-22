@@ -11,50 +11,9 @@
         <link rel="apple-touch-icon" href="icon.png">
         <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="main.css">
 
         <style type="text/css">
-
-/* Style inputs with type="text", select elements and textareas */
-input[type=text], select, textarea {
-    width: 50%; /* Full width */
-    padding: 12px; /* Some padding */  
-    border: 1px solid #ccc; /* Gray border */
-    border-radius: 4px; /* Rounded borders */
-    box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 6px; /* Add a top margin */
-    margin-bottom: 16px; /* Bottom margin */
-    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-}
-
-/* Style inputs with type="text", select elements and textareas */
-select {
-    width: 50%; /* Full width */
-}
-
-/* Style the submit button with a specific background color etc */
-input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* When moving the mouse over the submit button, add a darker green color */
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-/* Add a background color and some padding around the form */
-.container {05/31/2018 21:30
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
-
 
 
 
@@ -73,17 +32,14 @@ input[type=submit]:hover {
 
 <div class="container">
 <div id="inputform">
-  <a href='#' onclick=" document.getElementById('inputform').style.display =  'none';">
-  <img src="https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png" width="20px" alt='Hide Form'>
-  </a>
-
-<div id="vchead">
-    <label for="vc_num">VC#</label>
-    <input type="text" id="vc_num" name="firstname" placeholder="VC number" onchange="copyfields();" style='width:120px;'>
+<div id="vchead" class='normal'>
+  <a href='#' onclick="document.getElementById('inputform').style.display = 'none';"><img src="https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png" width="20px" alt="Hide Form"></a>
+  <label for="vc_num">VC#</label>
+    <input type="text" id="vc_num" name="firstname" placeholder="VC number" onchange="copyfields();//whosyrdada2(this);" style="width:120px;">
 
 
     <label for="bridge">Bridge</label>
-    <select id="bridge" name="bridge" onchange="copyfields();" style='width:200px;'>
+    <select id="bridge" name="bridge" onchange="copyfields();" style="width:200px;" class="normal">
       <option value="lon_acano_01">London Acano 01</option>
       <option value="lon_acano_02">London Acano 02</option>
       <option value="den_cms_01">Denver CMS 01</option>
@@ -112,7 +68,7 @@ input[type=submit]:hover {
     <input type="text" id="setup_time" style="width: 40px;" placeholder="setup time.."  value="15" onchange="copyfields();">
     <br />
   <input type="text" id="aliasinput" name="alias" placeholder="site alias.." style="width: 150px;"
-   onchange="if (isThingSaved({'id':this.value,'stash':'sites'})){ getThing({'id':this.value,'stash':'sites','result':'sitenameinput'})}">
+   onchange="if (isThingSaved({'id':this.value,'stash':'sites'})){ getThing({'id':this.value,'stash':'sites','result':'sitenameinput','alias':'aliasinput'})}">
   <input type="text" id="sitenameinput" name="sitename" placeholder="site name..">
   <a href="#" onclick='insRow(this);'><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='Add' style='width:20px;'></a>
   <br />
@@ -127,39 +83,37 @@ input[type=submit]:hover {
 <br />
 <div id='conferencesummary'>
   <div id="confnum">
-<table id="POITable" border=1 width="100%">
-  <tr><td colspan=3>
-<div id='vnum' style="float: left;">
-<span id='conferencenumber_display' style='font-size: x-large;font-weight: 900;'></span>&nbsp;-&nbsp;<span id='bridge_display'></span>
-<span id='things'>  
+    <table id="confTable" width="100%">
+      <tr><th colspan=3 border="0px">
+        <div id='vnum' style="float: left;">
+        <span id='conferencenumber_display' style='font-size: x-large;font-weight: 900;'></span>&nbsp;-&nbsp;<span id='bridge_display' class='normal'></span>
+        <span id='things'></span>
+        </div> <!-- vnum -->
+
+        <div id='vcdate' style="float: right;">
+        <span id='meeting_date' class='small normal'></span>
+        <span id='meeting_setup' style="font-size: x-large;font-weight: 900;"></span><br />Meet: <span id='meeting_start'></span>&nbsp;-&nbsp;<span id='meeting_end'></span>
+        </div> <!-- vcdate -->
 
 
-</span>
-</div>
-<div style="float: right;">
-<span id='meeting_date' style="font-size: x-large;"></span>
-<span id='meeting_setup' style="font-size: x-large;font-weight: 900;"></span><br />Meet: <span id='meeting_start'></span>&nbsp;-&nbsp;<span id='meeting_end'></span>
-</div>
-
-<div id='dialdetails' style="text-align: center;"></div>
+<div id='dialdetails' style="text-align: center;" class='code'></div>
 <span id='killme' style="float:left;"></span>
 <span id='audioline' style="float:right;"></span>
 <span id='meetgreet' style="float:right;"></span>
 <span id='vip' style="float:right;"></span>
 <span id='rec' style="float:right;"></span>
 <span id='mg' style="float:right;"></span>
-  <a href='#' onclick="noteshower(this);"><img src="http://ccotex.com/wp-content/uploads/2014/11/interview-lg-icon.png" alt="show note entry" style='width:20px;'></a>
 
+  <a href='#' onclick="noteshower(this);"><img src="http://ccotex.com/wp-content/uploads/2014/11/interview-lg-icon.png" alt="show note entry" style='width:20px; float:left;'></a>
 
-
-  <a href='#' onclick="killpreflight(this);"><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/delete-icon.png' alt='Delete' style='width:20px;'></a>
-  <a href="#" onclick='whosyrdada2(this);'><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='Add' style='width:20px;'></a>
-</span>
-  </td></tr>
+  <a href='#' onclick="killpreflight(this);"><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/delete-icon.png' alt='Delete' style='width:20px; float: left;'></a>
+  <a href="#" onclick='whosyrdada2(this);'><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='Add' style='width:20px; float: left;'></a>
+</div>
+      </th></tr>
 
 <tr id="notesrow" style="display: none;"><td colspan=3>
 <div id="notesform">
-    <label for="note_entry">Notes</label> <a href='#' onclick="whosyrdada1(this);dog_notes(this);">
+    <label for="note_entry">Notes</label> <a href='#' onclick="dog_notes(this);">
   <img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='Add' style='width:20px;'></a>
   <a href='#' onclick="notehider(this);"><img src="https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png" width="20px" alt='Hide'></a><br />
     <textarea id="note_entry" name="note_entry" placeholder="Write something.." style="height:100px; width: 500px;"></textarea>
@@ -169,7 +123,7 @@ input[type=submit]:hover {
 <div id="notes"></div>
 </td></tr>
 
-  <tr><td id='alias' style="width:30%;">alias</td><td id='name'>location</td><td style="width:60px;">&nbsp;</td></tr>
+  <tr><td id='alias' style="width:30%;">alias</td><td id='name'>location</td></tr>
 </table>
 </div>
 </div>
@@ -177,7 +131,7 @@ input[type=submit]:hover {
 </div>
 
 </div> <!-- inputform -->
-<div id="cumulative">
+<div id="cumulative" class='normal'>
 </div>
 
 <script type="text/javascript">
