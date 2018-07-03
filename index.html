@@ -12,6 +12,7 @@
         <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="ubi.css">
 
         <style type="text/css">
 
@@ -26,11 +27,11 @@
 
         <!-- Add your site or application content here -->
         <h3>
-        <img src="http://docksidegroup.com.au/images/logos/logo.png" style="float: right;">
       <a href='#' onclick=" document.getElementById('inputform').style.display =  'inline';"><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='+' style='width:20px;'></a>
       EY Preflight Builder</h3>  
 
 <div class="container">
+        <img src="http://docksidegroup.com.au/images/logos/logo.png" width="100 px" style="float: left;">
 <div id="inputform">
 <div id="vchead" class='normal'>
   <a href='#' onclick="document.getElementById('inputform').style.display = 'none';"><img src="https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png" width="20px" alt="Hide Form"></a>
@@ -65,7 +66,7 @@
     <label for="end_time">End Time</label>
     <input type="text" id="end_time" style="width: 80px;" placeholder="hh:mm" onchange="copyfields();" >
     <label for="setup_time">Setup Time</label>
-    <input type="text" id="setup_time" style="width: 40px;" placeholder="setup time.."  value="15" onchange="copyfields();">
+    <input type="text" id="setup_time" style="width: 60px;" placeholder="setup time.."  value="15" onchange="copyfields();">
     <br />
   <input type="text" id="aliasinput" name="alias" placeholder="site alias.." style="width: 150px;"
    onchange="if (isThingSaved({'id':this.value,'stash':'sites'})){ getThing({'id':this.value,'stash':'sites','result':'sitenameinput','alias':'aliasinput'})}">
@@ -123,16 +124,18 @@
 <div id="notes"></div>
 </td></tr>
 
-  <tr><td id='alias' style="width:30%;">alias</td><td id='name'>location</td></tr>
+  <tr><td id='alias' style="width:30%;">alias</td><td id='name'>location
+  <span style='float: right;'><a href='#' id='delsite' onclick='xdeleteRow(this);'><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/delete-icon.png' alt='Delete' style='width:20px;'></a></span>
+  </td></tr>
 </table>
 </div>
 </div>
 <hr />
 </div>
 
-</div> <!-- inputform -->
 <div id="cumulative" class='normal'>
 </div>
+</div> <!-- inputform -->
 
 <script type="text/javascript">
 

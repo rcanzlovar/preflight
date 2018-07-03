@@ -301,7 +301,21 @@ confnum@lync.amer.joinbyvideo.com
   // really need to do the math to subtract the setup time so we display two real times. 
 //  document.getElementById('meeting_setup').innerText  = document.getElementById('setup_time').value;
   document.getElementById('meeting_start').innerText  = document.getElementById('start_time').value;
-  document.getElementById('meeting_end').innerText  = document.getElementById('end_time').value;
+
+// check the end time , if its 9999 then format it as 99:99 in the output 
+      var re = /(\d{2})(\d{2})/;  
+      function testAlias(thing) {  
+        var OK = re.exec(thing);  
+        if (OK)  
+        {
+         // we matched!  
+          //0 = whole string, 1 & 2 are the bits 
+          return(OK[1]+':'+OK[2]);
+        }
+        else
+          return(thing);
+      }  
+  document.getElementById('meeting_end').innerText  = testAlias(document.getElementById('end_time').value);
 
 
   var endDate = document.getElementById('start_time').value;
