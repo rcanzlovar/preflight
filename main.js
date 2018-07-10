@@ -2,19 +2,23 @@
 // written by Bob Anzlovar rcanzlovar@gmail.com 2018 
 
 
-const note_icon = "<img src='http://ccotex.com/wp-content/uploads/2014/11/interview-lg-icon.png' style='width:20px;'>";
+const note_icon = "<img src='http://ccotex.com/wp-content/uploads/2014/11/interview-lg-icon.png' alt='Note' style='width:20px;'>";
 const x_icon = "<img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/delete-icon.png' alt='Delete' style='width:20px;'>";
 const plus_icon = "<img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/plus-icon.png' alt='Add' style='width:20px;'>";
 const info_icon = "<img  src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/info-icon.png' alt='Info' style='width:20px;'>";
 const phone_icon = "<img  src='https://www.oceanhousing.com/wp-content/uploads/2014/02/phone-icon.jpg' alt='Audio' style='width:20px;'>";
 const save_icon = "<img  src='http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-File-Save-icon.png' alt='Save' style='width:20px;'>";
-const vip_icon = "<img  src='http://badgemonkey.com/images/vip.jpg' alt='Save' style='width:20px;'>";
-const hide_icon = "<img  src='https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png' alt='Save' style='width:20px;'>";
-const rec_icon = "<img  src='http://myflare911.com/wp-content/uploads/2013/05/Record-icon-my-flare-alert.png' alt='Record' style='width:20px;'>";
-const meet_icon = "<img  src='http://aaclax.com/images/icons/icon-hands.png' alt='M&G' style='width:20px;'>";
-const denver_pgi = "<strong> 91 303 318 6789</strong>";
-const london_pgi = " <strong>9011 44 207 715 5260</strong>"; 
-
+const vip_icon = "<img  src='http://badgemonkey.com/images/vip.jpg' alt='VIP' style='width:20px;'>";
+const hide_icon = "<img  src='https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png' alt='Hide' style='width:20px;'>";
+const rec_icon = "<img  src='http://myflare911.com/wp-content/uploads/2013/05/Record-icon-my-flare-alert.png' alt='Rec' style='width:20px;'>";
+const meet_icon = "<img src='http://aaclax.com/images/icons/icon-hands.png' alt='M&G' style='width:20px;'>";
+const watch_icon = "<img src='https://cdn0.iconfinder.com/data/icons/fashion-volume-2/72/28-512.png' alt='Watch' style='width:20px;'>";
+const cert_icon = "<img src='https://conceptdraw.com/a155c4/p17/preview/640/pict--certificate-cloud-round-icons---vector-stencils-li0brary.png--diagram-flowchart-example.png' alt='Cert' style='width:20px;'>";
+const jabber_icon1 = "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/XMPP_logo.svg/1200px-XMPP_logo.svg.png' alt='Jabber' style='width:20px;'>";
+const jabber_icon = "<img src='https://oit.duke.edu/sites/default/files/styles/large/public/thumbnails/image/xmpp.png' alt='Jabber' style='width:20px;'>";
+const skype_icon = "<img src='http://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Skype-icon.png' alt='Jabber' style='width:20px;'>";
+const denver_pgi = "<strong>91 303 318 6789</strong>";
+const london_pgi = " <strong>9011 44 2077 155 260</strong>"; 
 
 
 // # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -79,11 +83,38 @@ function notehider(thing) {
 
 //  these are for site alias rows
 // onclick='deleteRow(this);
+function xdeleteRow(row) {
+//    var i=row.parentNode.rowIndex;
+// this deletes a row in the alias table
+    console.log(row.parentNode.parentNode.id); // the td
+    console.log(row.parentNode.parentNode.parentNode.id); // the tr
+    console.log(row.parentNode.parentNode.parentNode.parentNode.rows); // the tr
+    row.parentNode.parentNode.parentNode.parentNode.deleteRow(3); // the tr
+}
 function deleteRow(row) {
 //    var i=row.parentNode.rowIndex;
 // this deletes a row in the alias table
     var i= row.parentNode.parentNode.parentNode.rowIndex;
-    document.getElementById('confTable').deleteRow(i);
+    console.log('i',i);
+
+    console.log(row.parentNode.parentNode.id); // the td
+    console.log(row.parentNode.parentNode.rows); // the td
+    console.log(row.parentNode.parentNode.parentNode.id); // the tr
+    console.log(row.parentNode.parentNode.parentNode.rows); // the tr
+    console.log(row.parentNode.parentNode.parentNode.parentNode.id); // the tr
+    console.log(row.parentNode.parentNode.parentNode.parentNode); // the tr
+    console.log(row.parentNode);
+//    console.log(row.parentNo00ide.parentNode.parentNode.rows(i)); // the tr
+    console.log(row.parentNode.parentNode.parentNode.rowIndex);
+//    row.parentNode.parentNode.parentNode.parentNode.deleteRow(i); // the tr
+    row.parentNode.parentNode.parentNode.parentNode.deleteRow(i); // the tr
+
+ //   console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.rows); // the tr
+ //   console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode); // the tr
+//    row.parentNode.parentNode.parentNode.parentNode.parentNodex.deleteRow(i); // the tr
+//    row.parentNode.parentNode.parentNode.deleteRow(i); // the tr
+//    document.getElementById('confTable').deleteRow(i);
+//    document.getElementById('confTable').deleteRow(i);
 }
 function insRow(thing) {
   console.log('thing.id',thing.id);
@@ -115,7 +146,8 @@ function insRow(thing) {
       });
     }
 
-    new_row.cells[0].innerHTML   = document.getElementById('aliasinput').value;
+    // if it's a 4 digit numeric, add 'vc.ey.net' for a full alias in the alias column
+    new_row.cells[0].innerHTML   = testAlias( document.getElementById('aliasinput').value);
 
     // build a spiffy audio cel with an icon and the phone number for dialing 
     if (document.getElementById('aliasinput').value == 'audio') {
@@ -174,19 +206,6 @@ function dog_notes  (thing) {
    document.getElementById("note_entry").value = '';
 }
 
-// For todays date;
-function cat_notes  () {
-	//sweep the note entry into the notes compilaiton field 
-    time = new Date().toLocaleTimeString('en-US', { hour12: false, 
-                                             hour: "numeric", 
-                                             minute: "numeric"});
-    // make the notes visible... 
-  document.getElementById("notesrow").style.display =  '';
-  document.getElementById("notes").innerHTML += 
-  time  + ' ' 
-   + document.getElementById("note_entry").value + "<br />";
-   document.getElementById("note_entry").value = '';
-}
 //whenever you feel like it, copy the bits from the input fields to the display parts. Handy for "onchange" or "onexit" handlers
 var copyfields = function () {
   var dialdetails = '';
@@ -207,6 +226,20 @@ var copyfields = function () {
   }
 
 
+  if (document.getElementById('watch_check').checked == true) {
+      document.getElementById('watch').innerHTML = watch_icon;
+  } else {
+      document.getElementById('watch').innerHTML = '';
+  }
+
+
+  if (document.getElementById('cert_check').checked == true) {
+      document.getElementById('cert').innerHTML = cert_icon;
+  } else {
+      document.getElementById('cert').innerHTML = '';
+  }
+
+
   if (document.getElementById('mg_check').checked == true) {
       document.getElementById('mg').innerHTML = meet_icon;
   } else {
@@ -224,8 +257,9 @@ var copyfields = function () {
 
     if (bridge ==  'lon_acano_01' 
       || bridge ==  'lon_acano_02') {
-      dialdetails = 'SIP/H.323: ' + vcnum + '@216.98.185.12<br />\n';
-      dialdetails += '<a href="sip:' + vcnum + '@lync.emea.vbmeet.com">skype</a>\n';
+      dialdetails = '<a href="xmpp:' + vcnum + '@216.98.185.12">' + jabber_icon + '</a>\n';
+      dialdetails += vcnum + '@216.98.185.12<br />\n';
+      dialdetails += '<a href="sip:' + vcnum + '@lync.emea.vbmeet.com">' +  skype_icon + '</a>\n';
       dialdetails += vcnum + '@lync.emea.vbmeet.com<br />\n';
       dialdetails += '<a href="https://emea.vbmeet.com/?id=' +  vcnum + '" target="_new">';
       dialdetails += 'https://emea.vbmeet.com/?id=' +  vcnum + '</a>\n';
@@ -233,9 +267,10 @@ var copyfields = function () {
 
     if (bridge ==  'den_cms_01' 
       || bridge ==  'den_cms_02') {
-      dialdetails = 'SIP/H.323: ' + vcnum + '@216.98.188.98<br />\n';
-      dialdetails += '<a href="sip:' + vcnum + '@lync.amer.vbmeet.com">skype</a>\n';
-      dialdetails += 'Skype: ' + vcnum + '@lync.amer.vbmeet.com<br />\n';
+      dialdetails = '<a href="xmpp:' + vcnum + '@216.98.188.98">' + jabber_icon + '</a>\n';
+      dialdetails += vcnum + '@216.98.188.98\n';
+      dialdetails += '<a href="sip:' + vcnum + '@lync.amer.vbmeet.com">' + skype_icon + '</a>\n';
+      dialdetails += vcnum + '@lync.amer.vbmeet.com<br />\n';
       dialdetails += '<a href="https://amer.vbmeet.com/?id=' +  vcnum + '" target="_new">';
       dialdetails += 'https://amer.vbmeet.com/?id=' +  vcnum + '</a>\n';
     }
@@ -247,29 +282,35 @@ var copyfields = function () {
       dialdetails = 'SIP/H323: ' + vcnum + '@216.98.185.12<br />\n';
 
       if (bridge == 'lon_8510') {
-          dialdetails += 'MOVI: 024' + vcnum + '@joinbyvideo.com\n';
+          dialdetails += '<a href="xmpp:024' + vcnum + '@joinbyvideo.com">' + jabber_icon + '024' +  vcnum + '@joinbyvideo.com</a>\n';
       } else {
-          dialdetails += 'MOVI: 023' + vcnum + '@joinbyvideo.com\n';
+          dialdetails += 'MOVI: ';
+          dialdetails += '<a href="xmpp:023' + vcnum + '@joinbyvideo.com">' + jabber_icon + '023' +  vcnum + '@joinbyvideo.com</a>\n';
       }
     }
 
     if (bridge ==  'den_8510' ) {
       dialdetails = 'SIP/H323: ' + vcnum + '@216.98.188.82<br />\n';
       dialdetails += 'MOVI: 019' + vcnum + '@joinbyvideo.com\n';
+      dialdetails += '<a href="xmpp:019' + vcnum + '@joinbyvideo.com">' + jabber_icon + '019' +  vcnum + '@joinbyvideo.com</a>\n';
     }
     
     if (bridge ==  'den_8710_1' ) {
       dialdetails = 'SIP/H323: ' + vcnum + '@216.98.188.82<br />\n';
       dialdetails += 'MOVI: 014' + vcnum + '@joinbyvideo.com\n';
+      dialdetails += '<a href="xmpp:014' + vcnum + '@joinbyvideo.com">' + jabber_icon + '014' +  vcnum + '@joinbyvideo.com</a>\n';
     }
     
     if (bridge ==  'den_8710_2' ) {
       dialdetails = 'SIP/H323: ' + vcnum + '@216.98.188.82<br />\n';
       dialdetails += 'MOVI: 015' + vcnum + '@joinbyvideo.com\n';
+      dialdetails += '<a href="xmpp:015' + vcnum + '@joinbyvideo.com">' + jabber_icon + '015' +  vcnum + '@joinbyvideo.com</a>\n';
     }
     
     if (bridge ==  'den_8710_3' ) {
-          dialdetails += 'MOVI: 013' + vcnum + '@216.98.185.12\n';
+      dialdetails = 'SIP/H323: ' + vcnum + '@216.98.188.82<br />\n';
+      dialdetails += 'MOVI: 013' + vcnum + '@216.98.185.12\n';
+      dialdetails += '<a href="xmpp:013' + vcnum + '@joinbyvideo.com">' + jabber_icon + '013' +  vcnum + '@joinbyvideo.com</a>\n';
     }
     
 
@@ -279,6 +320,7 @@ var copyfields = function () {
       || bridge ==  'sgm_mcu'
       || bridge ==  'ind_4210') {
       dialdetails = 'MOVI: ' + vcnum + '\n';
+          dialdetails += '<a href="xmpp:' + vcnum + '">' + jabber_icon +  vcnum + '</a>\n';
     }
 
 
@@ -303,8 +345,9 @@ confnum@lync.amer.joinbyvideo.com
   document.getElementById('meeting_start').innerText  = document.getElementById('start_time').value;
 
 // check the end time , if its 9999 then format it as 99:99 in the output 
-      var re = /(\d{2})(\d{2})/;  
-      function testAlias(thing) {  
+      function xtestAlias(thing) {  
+        var re = /(\d{2})(\d{2})/;  
+
         var OK = re.exec(thing);  
         if (OK)  
         {
@@ -314,8 +357,11 @@ confnum@lync.amer.joinbyvideo.com
         }
         else
           return(thing);
-      }  
-  document.getElementById('meeting_end').innerText  = testAlias(document.getElementById('end_time').value);
+      }   
+   document.getElementById('end_time').value =  document.getElementById('meeting_end').innerText  = testTime(document.getElementById('end_time').value);
+    testTime(document.getElementById('end_time').value); 
+  // now that we have it, share it to the original place 
+
 
 
   var endDate = document.getElementById('start_time').value;
@@ -373,11 +419,11 @@ var filldate = function () {
   var datetime = "LastSync: " + new Date().today() + " @ " + new Date().timeNow();
   var date = " " + new Date().today() + " @ " + new Date().timeNow();
 
-  alert (datetime);
+//  alert (datetime);
   var d = new Date();
   document.write(d.toLocaleString());
 
-  alert(d.toLocaleString());
+//  alert(d.toLocaleString());
 
   time = new Date().toLocaleTimeString('en-US', { hour12: false, 
                                              hour: "numeric", 
@@ -385,3 +431,34 @@ var filldate = function () {
 
 }
 
+
+
+function testAlias(thing) {  
+  // check if this is a 4 digit numeric string, return 99:99 if it is
+  var re = /(\d{4})/;  
+  
+  var OK = re.exec(thing);  
+  if (OK)  
+  {
+   // we matched!  
+    //0 = whole string, 1 & 2 are the bits 
+    return(OK[1]+ '@vc.ey.net');
+  }
+  else
+    return(thing);
+}
+
+function testTime(thing) {  
+  // check if this is a 4 digit numeric string, return 99:99 if it is
+  var re = /(\d{2})(\d{2})/;  
+  
+  var OK = re.exec(thing);  
+  if (OK)  
+  {
+   // we matched!  
+    //0 = whole string, 1 & 2 are the bits 
+    return(OK[1]+':'+OK[2]);
+  }
+  else
+    return(thing);
+}

@@ -45,6 +45,7 @@ function saveThing(e){
   if ( typeof e == 'object' && typeof e.result == 'string') { result = e.result }
 
     if (id == 'audio') {return 0}
+      // don't save movi - we have already saved it 
     if (id == 'movi') {return 0}
 //  if(!validateForm(siteName, siteUrl)){
 //    return false;
@@ -66,7 +67,10 @@ function saveThing(e){
   // Test if bookmarks is null
   if(localStorage.getItem(stash) === null){
     // Init array
-    var things = [];
+    var things = //[]; 
+    // start with a literal of the array so that a new user isn't starting empty. Can preload things here too. 
+    [{"id":"3162","name":"AU-Canberra-Biyaligee_Room_11.03"},
+    {"id":"3027","name":"NZ-Wellington-Room_System"},{"id":"4590","name":"RU-Moscow-Portable-3"},{"id":"4576","name":"IT-Roma-Sala_Po"},{"id":"4187","name":"CH-Zurich-Video-Conf-RM"},{"id":"2374","name":"US-Boston-Mercury_Rm"},{"id":"578212988@okm-net.webex.com","name":"EYGSLTD - zMUST CALL BT TO BOOK - OKM Shiga, Japan"},{"id":"3222","name":"AU-Melbourne-Rm_30.057"},{"id":"3275","name":"AU-Sydney-Conference_RM_34.31"},{"id":"2291","name":"UK-Birmingham-Rm_09.01"},{"id":"3266","name":"MY-KualaLumpur-Cakrawala_Room"},{"id":"3252","name":"NZ-Auckland-7.236"},{"id":"3271","name":"AU-Sydney-Conference_RM_33.33"},{"id":"3029","name":"CN-Beijing-Portable_2"},{"id":"3163","name":"HK-CTO-22F-VC2-Portable"},{"id":"3226","name":"SG-ORQ-13F-Sentosa"},{"id":"4568","name":"UK-Glasgow-Floor8_Room2"},{"id":"4554","name":"AE-Dubai-Al-Attar-11th_Floor_Meeting_Room"},{"id":"4593","name":"UK-London-1MLP_3W_003"},{"id":"4664","name":"UK-London-25CP_17_M10"},{"id":"3217","name":"AU-Melbourne-RM_27.051"},{"id":"1382@202.160.126.45","name":"zMUST CALL BT TO BOOK - King & Wood Malleson"},{"id":"4594","name":"UK-London-1MLP_8W_007"},{"id":"4551","name":"CZ-Prague-Florentinum-Room_8.02"},{"id":"4458","name":"SK-Bratislava-Hradny_vrch_Rm"},{"id":"4091","name":"SE-Gothenburg-Liseberg"},{"id":"4163","name":"SE-Malmoe-Gustav-Adolfs-Torg"},{"id":"4481","name":"SE-Stockholm-2080_11"},{"id":"4737","name":"IN-New_Delhi-Aero_City-Portable-2"},{"id":"4711","name":"UK-London-6MLP_02_M2E"},{"id":"3198","name":"TW-Taichung-Portable-1"},{"id":"3030","name":"TW-Taipei-Meeting_Room"},{"id":"4596","name":"UK-London-1MLP_7W_003"},{"id":"4871","name":"UK-Manchester-SPS-10.M01_Rm"},{"id":"3068","name":"JP-Saitama-SNC_MtgRm"},{"id":"4663","name":"UK-London-25CP_14_M10"},{"id":"4662","name":" UK-London-1MLP_2W_005"},{"id":"4042","name":"UK-London-1MLP_Test"},{"id":"4445","name":"UK-Belfast_Rm_2"},{"id":"4426","name":"IE-Dublin-HC_B1_07_705"},{"id":"1234","name":"this is my site "},{"id":"2003","name":"US-Atlanta-Portable_3"},{"id":"3233","name":"AU-Melbourne-Rm_26.055"},{"id":"3274","name":"AU-Sydney-Conference_RM_34.29"},{"id":"861058153968@216.98.190.10","name":"CN-BJ-1613-TP Room"},{"id":"85228469962@216.98.190.10","name":"CN-HK-2207-TP"},{"id":"862122288111@216.98.190.10","name":"CN-SH-TP Room"},{"id":"3002","name":"HK-OIE-62F-Conference_Room_6202"},{"id":"4498","name":"IN-Bangalore-GSS-RMZ-5F-Himalaya_Rm"},{"id":"4883","name":"UK-Edinburgh-Rm_AO.3.EV3"},{"id":"4569","name":"UK-London-25CP_13_M10"},{"id":"4078","name":"CH-Zurich-Dubai-FF-Portable_1"},{"id":"2701532@lifesizecloud.com","name":"zMUST CALL BT TO BOOK - EY Parthenon GmBH"},{"id":"4654","name":"IN-New_Delhi-Aero_City-Portable-4"},{"id":"61.12.0.26","name":"zMUST CALL BT TO BOOK - Fedders Electric - India"},{"id":"4179","name":"UK-Glasgow-Room_G1.08.M001"},{"id":"4171","name":"IN-Mumbai-Ruby-15F-Portable_1"},{"id":"46645927@this.that","name":"completely bogus"},{"id":"195.209.143.30","name":"zMUST CALL BT TO BOOK - ROLIS - UK - PLP"},{"id":"95.161.206.198","name":"zMUST CALL BT TO BOOK - ROLIS - UK Ust-luga"},{"id":"4681","name":"IN-Gurgaon-GSS-UCP_Board_Room"},{"id":"0.0.0.0","name":"enter site name"},{"id":"0000","name":"zMUST CALL BT TO BOOK - Standard Chartered Global Business Services Sdn - Singapore"},{"id":"4239","name":"FR-Paris-MIRO_Room"},{"id":"330517249@216.98.190.10","name":"FR-Paris-Venet-TP"},{"id":"4586","name":"UK-Bristol-MR2"},{"id":"4592","name":"UK-London-1MLP_4W_001"},{"id":"4743","name":"IN-Mumbai-Ruby-15F-Portable_1"},{"id":"2000201872@119.81.134.226","name":"zMUST CALL BT TO BOOK - azbpartners"},{"id":"14.141.243.195","name":"zMUST CALL BT TO BOOK - Tata Petrodyne - Mumbai"},{"id":"4754","name":"IN-New_Delhi-Aero_City-Portable-4"},{"id":"182.75.30.212","name":"zMUST CALL BT TO BOOK - Trimex Heavy Minerals"},{"id":"4502","name":"DE-Koeln-Boersenplatz1-Room_6.3.06"},{"id":"4154","name":"DE-Munich-K2"},{"id":"4724","name":"DE-Stuttgart-E30_C_Schipol"},{"id":"4139","name":"IN-Hyderabad-ILD-Saturn_Conf_Room"},{"id":"4736","name":"IN-New_Delhi-Aero_City-Portable-1"},{"id":"4896","name":"IN-Bangalore-UBC-13F-Boardroom"},{"id":"4375","name":"IN-Bangalore-Divyashree-Portable5"},{"id":"3152","name":"SG-ORQ-18F-Tanglin"},{"id":"3006","name":"AU-Melbourne-Portable_1"},{"id":"3011","name":"AU-Brisbane-Portable_2"},{"id":"3228","name":"AU-Melbourne-Rm_25.051"},{"id":"61282956111@216.98.190.10","name":"AU-SYD-33.55-TP"},{"id":"194.226.168.40","name":"zMUST CALL BT TO BOOK - ROLIS - PKT"},{"id":"91.228.120.42","name":"zMUST CALL BT TO BOOK - ROLIS - VSK - Room 216"},{"id":"4560","name":"IN-Gurgaon-Centre_Court_Ground_Flr"},{"id":"4563","name":"IN-Hyderabad-LCC-Portable_2"},{"id":"2321","name":"UK-Edinburgh- Rm_M13"},{"id":"4666","name":"UK-London-25CP_16_M10"},{"id":"4225","name":"FR-Paris-14AR1"},{"id":"4688","name":"BE-Diegem-San_Francisco_VC1"},{"id":"3201","name":"NL-Amsterdam-Room_21.2"},{"id":"3013","name":"AU-Canberra-Queen Caroline Lane_Room_11.01"},{"id":"3270","name":"AU-Sydney-Conference_RM_33.31"},{"id":"4878","name":"IN-Mumbai-Ruby-6F-Portable_5"},{"id":"3031","name":"CN-Shanghai-Portable_2"},{"id":"4471","name":"UK-Leeds-Meeting_Room_5"},{"id":"4723","name":"PL-Warsaw-Portable_1"},{"id":"movi","name":"Desktop Video Site"},{"id":"4084","name":"ES-Madrid-Room_17.A.02"},{"id":"62.82.98.16","name":"zMUST CALL BT TO BOOK - ICEX - Madrid"},{"id":"62.249.32.82","name":"zMUST CALL BT TO BOOK - Banca Mediolanum - Milan"},{"id":"4863","name":"ES-Madrid-Room_16.A.02"},{"id":"4831","name":"IN-Bangalore-BTP_Garnet-Portable1"},{"id":"4218","name":"IN-Bangalore-GSS-BMP-BR"},{"id":"4798","name":"IN-Bangalore-GSS-KMG-Portable_3"},{"id":"4795","name":"IN-KOC-Carnival_Ph4_5F-Recreation"},{"id":"4844","name":"IN-Gurgaon-GSS-UCP-Manhattan"},{"id":"4180","name":"IN-Bangalore-GSS-RMZ-Portable3"},{"id":"4739","name":"IN-Bangalore-RMZ-ERN-Mtg_Rm"},{"id":"914716647555@216.98.190.10","name":"IN-KL-Trivandrum-Innovation Centre -TP"},{"id":"4070","name":"UK-London-Test_1"},{"id":"6563098842@216.98.190.10","name":"SG-SG-Shenton-TP"},{"id":"4778","name":"EYGSLTD - IT-Milan-Rm_01.006"},{"id":"195.46.10.80","name":"zMUST CALL BT TO BOOK - IGI Poseidon - Athens"},{"id":"4420","name":"IN-Bangalore-GSS-RMZ-5F-Aravalli_Room"},{"id":"4895","name":"UK-Reading-Client_Suite_Rm-10"},{"id":"4584","name":"RU-Moscow-C5"},{"id":"95.161.206.205","name":"zMUST CALL BT TO BOOK - ROLIS - UK Kronshtadt"},{"id":"4514","name":"IN-Kolkatta-Block_B-Portable"}];
     // Add to array
     things.push(thing);
     // Set to localStorage
@@ -76,8 +80,10 @@ function saveThing(e){
     var things = JSON.parse(localStorage.getItem(stash));
     // Add bookmark to array
     things.push(thing);
+
     // Re-set back to localStorage
     localStorage.setItem(stash, JSON.stringify(things));
+    document.getElementById('stringify').innerText = JSON.stringify(things);
   }
 
   // Clear form
@@ -120,7 +126,7 @@ function getThing(e){
 
 //don't save these at all 
     if (id == 'audio') {return 0}
-    if (id == 'movi') {return 0}
+//    if (id == 'movi') {return 0}
 
   // init it if it isn't there 
   if(localStorage.getItem(stash) === null){
