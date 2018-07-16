@@ -5,6 +5,7 @@
 const note_icon = "<img src='http://ccotex.com/wp-content/uploads/2014/11/interview-lg-icon.png' alt='Note' style='width:20px;'>";
 const x_icon = "<img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/delete-icon.png' alt='Delete' style='width:20px;'>";
 const plus_icon = "<img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/plus-icon.png' alt='Add' style='width:20px;'>";
+const minus_icon = "<img src='http://icons.iconarchive.com/icons/gakuseisean/ivista/128/Minus-icon.png' alt='Add' style='width:20px;'>";
 const info_icon = "<img  src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/info-icon.png' alt='Info' style='width:20px;'>";
 const phone_icon = "<img  src='https://www.oceanhousing.com/wp-content/uploads/2014/02/phone-icon.jpg' alt='Audio' style='width:20px;'>";
 const save_icon = "<img  src='http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-File-Save-icon.png' alt='Save' style='width:20px;'>";
@@ -16,7 +17,7 @@ const watch_icon = "<img src='https://cdn0.iconfinder.com/data/icons/fashion-vol
 const cert_icon = "<img src='https://conceptdraw.com/a155c4/p17/preview/640/pict--certificate-cloud-round-icons---vector-stencils-li0brary.png--diagram-flowchart-example.png' alt='Cert' style='width:20px;'>";
 const jabber_icon1 = "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/XMPP_logo.svg/1200px-XMPP_logo.svg.png' alt='Jabber' style='width:20px;'>";
 const jabber_icon = "<img src='https://oit.duke.edu/sites/default/files/styles/large/public/thumbnails/image/xmpp.png' alt='Jabber' style='width:20px;'>";
-const skype_icon = "<img src='http://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Skype-icon.png' alt='Jabber' style='width:20px;'>";
+const skype_icon = "<img src='http://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Skype-icon.png' alt='Skype' style='width:20px;'>";
 const denver_pgi = "<strong>91 303 318 6789</strong>";
 const london_pgi = " <strong>9011 44 2077 155 260</strong>"; 
 
@@ -28,21 +29,42 @@ const london_pgi = " <strong>9011 44 2077 155 260</strong>";
 function whosyrdada2(row)
 {
   // navigate up to the top level of this div s
-    var i=row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-    i['id'] = document.getElementById('vc_num').value;
 
-    var id = i['id'];// = 'confnum' + document.getElementsByTagName('')
-
-    console.log('id=',id);
     console.log(row.parentNode.parentNode.id); // bingo
     console.log(row.parentNode.parentNode.parentNode.id);
     console.log(row.parentNode.parentNode.parentNode.parentNode.id);
     console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.id);
-    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id);
+    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode);
+    console.log(row.parentNode.parentNode.parentNode.parentNode);
+    console.log(row.parentNode.parentNode.parentNode.parentNode.rows);
+    console.log(row.parentNode.parentNode.parentNode.parentNode.rows.length);
+    // if we're in the place where we
+    if (row.parentNode.parentNode.parentNode.parentNode.parentNode.id == 'confnum') {
+      var i=row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
 
-    row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id = 'vcn' + document.getElementById('vc_num').value ;
-    row.parentNode.parentNode.parentNode.parentNode.parentNode.id = 'xyz' + document.getElementById('vc_num').value ;
-   document.getElementById('cumulative').innerHTML += i.innerHTML;
+      // say no to this chanve 
+      
+//      i['id'] = document.getElementById('vc_num').value;
+      var id = i['id'];// = 'confnum' + document.getElementsByTagName('')
+      console.log('id=',id);
+      // this is the top level entry point, do the needful
+//      row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id = 'vcn' + document.getElementById('vc_num').value ;
+      row.parentNode.parentNode.parentNode.parentNode.parentNode.id = 'vcn' + document.getElementById('vc_num').value ;
+      document.getElementById('cumulative').innerHTML += i.innerHTML;
+      // put it back
+      row.parentNode.parentNode.parentNode.parentNode.parentNode.id ='confnum';
+      // clear out the leg rows to make the input thing ready to go for the next one 
+      //first 4 rows are headers... 
+      for (var j = row.parentNode.parentNode.parentNode.parentNode.rows.length;j > 4; j--) {
+        console.log(j,row.parentNode.parentNode.parentNode.parentNode.rows[j-1]);
+        var elem = row.parentNode.parentNode.parentNode.parentNode.rows[j-1];
+        elem.parentNode.removeChild(elem);
+      }
+      // should reset the buttons and setup times here, as well 
+      document.getElementById('setup_time').value = 15;
+    } else {
+      console.log("can't dup a dup'ed conference based on the name");
+    }
 }
 
 // # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -84,13 +106,11 @@ function notehider(thing) {
 //  these are for site alias rows
 // onclick='deleteRow(this);
 function xdeleteRow(row) {
-//    var i=row.parentNode.rowIndex;
-// this deletes a row in the alias table
-    console.log(row.parentNode.parentNode.id); // the td
-    console.log(row.parentNode.parentNode.parentNode.id); // the tr
-    console.log(row.parentNode.parentNode.parentNode.parentNode.rows); // the tr
-    row.parentNode.parentNode.parentNode.parentNode.deleteRow(3); // the tr
+    if (row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id !== 'confnum'){
+      row.parentNode.parentNode.parentNode.parentNode.deleteRow(3); // the tr
+    } // the tr
 }
+
 function deleteRow(row) {
 //    var i=row.parentNode.rowIndex;
 // this deletes a row in the alias table
@@ -107,7 +127,18 @@ function deleteRow(row) {
 //    console.log(row.parentNo00ide.parentNode.parentNode.rows(i)); // the tr
     console.log(row.parentNode.parentNode.parentNode.rowIndex);
 //    row.parentNode.parentNode.parentNode.parentNode.deleteRow(i); // the tr
-    row.parentNode.parentNode.parentNode.parentNode.deleteRow(i); // the tr
+//if this doesn't work, it might be because it needs to be offset by the number of rows
+// in the header (4)
+//anyways it works 
+try{ 
+  row.parentNode.parentNode.parentNode.parentNode.deleteRow(i); 
+}
+catch(err) {
+//  console.log('this error ',err);
+  row.parentNode.parentNode.parentNode.parentNode.deleteRow(i-4); 
+}
+
+
 
  //   console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.rows); // the tr
  //   console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode); // the tr
@@ -145,6 +176,7 @@ function insRow(thing) {
         'result':'notes'
       });
     }
+    console.log(document.getElementById('sitenameinput'));
 
     // if it's a 4 digit numeric, add 'vc.ey.net' for a full alias in the alias column
     new_row.cells[0].innerHTML   = testAlias( document.getElementById('aliasinput').value);
@@ -157,8 +189,10 @@ function insRow(thing) {
           || document.getElementById('bridge').value == "den_cms_02" ) {
           new_row.cells[0].innerHTML   += denver_pgi;
         }
-        if (document.getElementById('bridge').value == "lon_acano_01"
-          || document.getElementById('bridge').value == "lon_acano_02" ) {
+        if (document.getElementById('bridge').value == "lon_cms_01"
+          || document.getElementById('bridge').value == "lon_cms_02" 
+          || document.getElementById('bridge').value == "lon_cms_03" 
+          || document.getElementById('bridge').value == "lon_cms_04" ) {
           new_row.cells[0].innerHTML   += london_pgi;
         }
 
@@ -255,8 +289,10 @@ var copyfields = function () {
     var bridge = document.getElementById('bridge').value;
     var vcnum = document.getElementById('vc_num').value;
 
-    if (bridge ==  'lon_acano_01' 
-      || bridge ==  'lon_acano_02') {
+    if (bridge ==  'lon_cms_01' 
+      || bridge ==  'lon_cms_02'
+      || bridge ==  'lon_cms_03'
+      || bridge ==  'lon_cms_04' ) {
       dialdetails = '<a href="xmpp:' + vcnum + '@216.98.185.12">' + jabber_icon + '</a>\n';
       dialdetails += vcnum + '@216.98.185.12<br />\n';
       dialdetails += '<a href="sip:' + vcnum + '@lync.emea.vbmeet.com">' +  skype_icon + '</a>\n';
@@ -268,7 +304,7 @@ var copyfields = function () {
     if (bridge ==  'den_cms_01' 
       || bridge ==  'den_cms_02') {
       dialdetails = '<a href="xmpp:' + vcnum + '@216.98.188.98">' + jabber_icon + '</a>\n';
-      dialdetails += vcnum + '@216.98.188.98\n';
+      dialdetails += vcnum + '@216.98.188.98<br />\n';
       dialdetails += '<a href="sip:' + vcnum + '@lync.amer.vbmeet.com">' + skype_icon + '</a>\n';
       dialdetails += vcnum + '@lync.amer.vbmeet.com<br />\n';
       dialdetails += '<a href="https://amer.vbmeet.com/?id=' +  vcnum + '" target="_new">';
@@ -309,7 +345,7 @@ var copyfields = function () {
     
     if (bridge ==  'den_8710_3' ) {
       dialdetails = 'SIP/H323: ' + vcnum + '@216.98.188.82<br />\n';
-      dialdetails += 'MOVI: 013' + vcnum + '@216.98.185.12\n';
+      dialdetails += 'MOVI: 013' + vcnum + '@216.98.188.82\n';
       dialdetails += '<a href="xmpp:013' + vcnum + '@joinbyvideo.com">' + jabber_icon + '013' +  vcnum + '@joinbyvideo.com</a>\n';
     }
     
@@ -358,6 +394,7 @@ confnum@lync.amer.joinbyvideo.com
         else
           return(thing);
       }   
+
    document.getElementById('end_time').value =  document.getElementById('meeting_end').innerText  = testTime(document.getElementById('end_time').value);
     testTime(document.getElementById('end_time').value); 
   // now that we have it, share it to the original place 
@@ -435,7 +472,7 @@ var filldate = function () {
 
 function testAlias(thing) {  
   // check if this is a 4 digit numeric string, return 99:99 if it is
-  var re = /(\d{4})/;  
+  var re = /(^\d{4}$)/;  
   
   var OK = re.exec(thing);  
   if (OK)  
@@ -461,4 +498,12 @@ function testTime(thing) {
   }
   else
     return(thing);
+}
+//make it easy to show/hide div panels
+function showHide(thing) {
+    if (thing.style.display === "none") {
+        thing.style.display = "inline";
+    } else {
+        thing.style.display = "none";
+    }
 }

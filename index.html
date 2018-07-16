@@ -26,15 +26,20 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <h3>
-      <a href='#' onclick=" document.getElementById('inputform').style.display =  'inline';"><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='+' style='width:20px;'></a>
-      EY Preflight Builder</h3>  
 
 <div class="container">
-        <img src="http://docksidegroup.com.au/images/logos/logo.png" width="100 px" style="float: left;">
+        <img src="http://docksidegroup.com.au/images/logos/logo.png" width="100 px" style="float: left;" alt="EY">
+        <span style="float: right;">
+          <button onclick="showHide(document.getElementById('help'))">Help</button> <br />
+          <button onclick="showHide(document.getElementById('inputform'))">Input Form</button> <br />
+          <button onclick="showHide(document.getElementById('controlpanel'))">Control Panel</button>
+        </span>
+
+        <h3> 
+        Preflight Builder
+        </h3>  
 <div id="inputform">
 <div id="vchead" class='normal'>
-  <a href='#' onclick="document.getElementById('inputform').style.display = 'none';"><img src="https://cdn4.iconfinder.com/data/icons/adjusting-the-interface/256/Ui_glyphs_invisible-128.png" width="20px" alt="Hide Form"></a>
   <label for="vc_num">VC#</label>
     <input type="text" id="vc_num" name="firstname" placeholder="VC number" onchange="copyfields();//whosyrdada2(this);"  style="width:120px;">
 
@@ -62,8 +67,10 @@
 </script>
     <label for="bridge">Bridge</label>
     <select id="bridge" name="bridge" onchange="copyfields();" style="width:200px;" class="normal">
-      <option value="lon_acano_01">London Acano 01</option>
-      <option value="lon_acano_02">London Acano 02</option>
+      <option value="lon_cms_01">London CMS 01</option>
+      <option value="lon_cms_02">London CMS 02</option>
+      <option value="lon_cms_03">London CMS 03</option>
+      <option value="lon_cms_04">London CMS 04</option>
       <option value="den_cms_01">Denver CMS 01</option>
       <option value="den_cms_02">Denver CMS 02</option>
       <option value="lon_8510">London MSE 8510</option>
@@ -105,10 +112,10 @@
     <input type="checkbox" id="cert_check" value='cert' onchange="copyfields()">
     <label for="watch_check">Watch</label>
     <input type="checkbox" id="watch_check" value='watch' onchange="copyfields()">
-    <span id='stringify'></span>
 </div>
+
 <br />
-<div id='conferencesummary'>
+<div id='conferencesummary' style="background:   #FFFfa0;">
   <div id="confnum">
     <table id="confTable" width="100%">
       <tr><th colspan=3 border="0px">
@@ -168,41 +175,27 @@
 </div>
 </div> <!-- inputform -->
 
-<script type="text/javascript">
+<div id="controlpanel">
+      <label for="vc_num">remove alias</label>
+    <input type="text" id="remalias" placeholder="Room Alias" style="width:120px;">
+    <button onclick="deleteThing({'id':document.getElementById('remalias').value,'stash':'sites','result':'stringify'});document.getElementById('remalias').value='';">delete alias</button>
+    <table border=1><tr><td>
+    <span id='stringify'></span>
+      
+    </td></tr></table>
+
+</div>
+<div id="help" class='container'>
+  <h3>Help for the Preflight builder</h3>
+
+<p>This utility creates a summary-page of upcoming conferences with relevant details like dial strings for the legs and Skype links for desktop users to connect.</p>
+<p>The "input form" should be visible with form boxes to fill. If it is not visible, clic the "input form" button to reveal it.<br /> 
+  Paste the video conference number into the <em>VC#</em> field and then select the bridge from the dropdown. . This will begin to populate the conference summary with dial strings and links. </p>
+<p>Start time can be copied in directly from Onward or manually typed in the format mm/dd/yyyy hh:mm. End time can be entered as either like 12:30 or 1230, it will be properly formatted. Setup time defaults to 15 minutes, and will revert when you save a conference.</p>
+<p>Site Alias should have the 4 digit room alias, IP address or E.164 string for a TP room. This can be typed in partially, and if unique, the full name will be retrieved. These are stored locally in the browser local storage. Entering a new room will will attempt to update this. A function has been provided which will allow you to remove an alias, see the control panel below. </p>
 
 
-var newthing1 = {
-  'id':'2345',
-  'bridge':'london 8710_2',
-  'time':{
-     'start':'08:00:00',
-     'end':'10:00:00'
-     },
-  'legs':[
-    {alias:'1234',name:'Sydney something',start:'08:00:00 GMT+10'},
-    {'alias':'4527'},
-    {'alias':'4527','name':'Adelaide something'},
-    {'alias':'123456@12.34.56.78','name':'client something'}
-  ],
-  'host':{'name':'some guy','phone':'2 720 877 5915','email':'robert.anzlovar@bt.com'},
-  'requestor':{'name':'alex vickers','phone':'0114412345','email':'avickers@uk.ey.com'},
-};
-
-/*
-var newthing2 = {
-  'id': '2345',
-  'bridge': 'london 8710_2',
-};
-console.log(newthing1);
-document.write(newthing1.id + "<br />");
-document.write(newthing1.bridge + "<br />");
-document.write(newthing1.host.name + "<br />");
-document.write(newthing1.host.phone + "<br />");
-*/
-
-
-</script>
-
+</div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
