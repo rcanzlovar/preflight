@@ -11,14 +11,10 @@
         <link rel="apple-touch-icon" href="icon.png">
         <!-- Place favicon.ico in the root directory -->
 
+
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="ubi.css">
 
-        <style type="text/css">
-
-
-
-      </style>
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -30,9 +26,9 @@
 <div class="container">
         <img src="http://docksidegroup.com.au/images/logos/logo.png" width="100 px" style="float: left;" alt="EY">
         <span style="float: right;">
-          <button onclick="showHide(document.getElementById('help'))">Help</button> <br />
-          <button onclick="showHide(document.getElementById('inputform'))">Input Form</button> <br />
-          <button onclick="showHide(document.getElementById('controlpanel'))">Control Panel</button>
+          <input type="submit" onclick="showHide(document.getElementById('help'))" value="Help"><br />
+          <input type="submit" onclick="showHide(document.getElementById('inputform'))" value="Input Form"> <br />
+          <input type="submit" onclick="showHide(document.getElementById('controlpanel'))" value="Control Panel">
         </span>
 
         <h3> 
@@ -188,19 +184,24 @@
 <div id="help" class='container'>
   <h3>Help for the Preflight builder</h3>
 
+<p>You got this page because you clicked the help button. click it again to hide this panel. </p>
 <p>This utility creates a summary-page of upcoming conferences with relevant details like dial strings for the legs and Skype links for desktop users to connect.</p>
-<p>The "input form" should be visible with form boxes to fill. If it is not visible, clic the "input form" button to reveal it.<br /> 
+<p>The "input form" should be visible with form boxes to fill. If it is not visible, click the "input form" button to reveal it.<br /> 
   Paste the video conference number into the <em>VC#</em> field and then select the bridge from the dropdown. . This will begin to populate the conference summary with dial strings and links. </p>
-<p>Start time can be copied in directly from Onward or manually typed in the format mm/dd/yyyy hh:mm. End time can be entered as either like 12:30 or 1230, it will be properly formatted. Setup time defaults to 15 minutes, and will revert when you save a conference.</p>
+<p>Start time can be copied in directly from Onward or typed manually typed using the format 
+  <strong>mm/dd/yyyy hh:mm></strong>. End time can be entered as either like 12:30 or 1230, it will be properly formatted. Setup time defaults to 15 minutes, and will revert when you save a conference.</p>
 <p>Site Alias should have the 4 digit room alias, IP address or E.164 string for a TP room. This can be typed in partially, and if unique, the full name will be retrieved. These are stored locally in the browser local storage. Entering a new room will will attempt to update this. A function has been provided which will allow you to remove an alias, see the control panel below. </p>
+<p>Note that I have provided a set of initial room aliases. These are preloaded form witin 
+the script. New rooms will be automatically added as time they're used. Rooms that have been 
+added in error can be manually deleted using the delete alias button in the control panel. </p>
 
 
 </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-        <script src="main.js"></script>
-        <script src="bookmarks.js"></script>
+        <script src="main.js"> </script>
+        <script src="bookmarks.js"> </script>
 
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     </body>
