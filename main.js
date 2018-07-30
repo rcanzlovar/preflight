@@ -18,9 +18,18 @@ const cert_icon = "<img src='https://conceptdraw.com/a155c4/p17/preview/640/pict
 const jabber_icon1 = "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/XMPP_logo.svg/1200px-XMPP_logo.svg.png' alt='Jabber' style='width:20px;'>";
 const jabber_icon = "<img src='https://oit.duke.edu/sites/default/files/styles/large/public/thumbnails/image/xmpp.png' alt='Jabber' style='width:20px;'>";
 const skype_icon = "<img src='http://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Skype-icon.png' alt='Skype' style='width:20px;'>";
-const denver_pgi = "<strong>91 303 318 6789</strong>";
-const london_pgi = " <strong>9011 44 2077 155 260</strong>"; 
 
+const london_pgi1 = "<span class='szLarge'><strong>9011 44 2077 155 260</strong></span>"; 
+const london_pgi2 = "<span class='szLarge'><strong>09803303366062</strong></span>"; 
+
+const denver_pgi1 = "<span class='szLarge'><strong>91 303 318 6789</strong></span>";
+const denver_pgi2 = "<span class='szLarge'><strong>09818662595440</strong></span>"; 
+
+const ffm_pgi = "<strong>8#069710445509</strong>"; 
+const aus_pgi = " <strong>550#001610730150562</strong>"; 
+const scs_pgi = " <strong>9#18662595440</strong>"; 
+const sgm_pgi = " <strong>550#66549138</strong>"; 
+const ind_pgi = " <strong>1001163100238</strong>"; 
 
 // # # # # # # # # # # # # # # # # # # # # # # # # 
 // this is the function that is called when you add a completed conference to the cumulative 
@@ -28,40 +37,74 @@ const london_pgi = " <strong>9011 44 2077 155 260</strong>";
 // of the cumulative block 
 function whosyrdada2(row)
 {
-  // navigate up to the top level of this div s
+  //oo navigate up to the top level of this div s
+  var me = row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+  var me6 = row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+      
+      if (me.id == 'confnum') {
+          console.log('a breakthrough');
+          console.log(me);
+      }
 
+    console.log(row.parentNode.id); // bingodd
     console.log(row.parentNode.parentNode.id); // bingo
     console.log(row.parentNode.parentNode.parentNode.id);
     console.log(row.parentNode.parentNode.parentNode.parentNode.id);
     console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.id);
+    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id);
+    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id);
+    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id);
+    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id);
     console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode);
     console.log(row.parentNode.parentNode.parentNode.parentNode);
     console.log(row.parentNode.parentNode.parentNode.parentNode.rows);
-    console.log(row.parentNode.parentNode.parentNode.parentNode.rows.length);
+    //console.log(row.parentNode.parentNode.parentNode.parentNode.rows.length);
     // if we're in the place where we
-    if (row.parentNode.parentNode.parentNode.parentNode.parentNode.id == 'confnum') {
-      var i=row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+    console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id);
+    if (row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id == 'confnum') {
+      console.log('part 1');
+    }
+    
+    if (me.id == 'confnum') {
+      console.log('part 2');
 
+//      var i=row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+      var i=me.parentNode;
       // say no to this chanve 
-      
-//      i['id'] = document.getElementById('vc_num').value;
       var id = i['id'];// = 'confnum' + document.getElementsByTagName('')
       console.log('id=',id);
       // this is the top level entry point, do the needful
-//      row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id = 'vcn' + document.getElementById('vc_num').value ;
-      row.parentNode.parentNode.parentNode.parentNode.parentNode.id = 'vcn' + document.getElementById('vc_num').value ;
+      //row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.id = 'vcn' + document.getElementById('vc_num').value ;
+      me.id = 'vcn' + document.getElementById('vc_num').value ;
       document.getElementById('cumulative').innerHTML += i.innerHTML;
+      console.log(row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rows.length);
       // put it back
-      row.parentNode.parentNode.parentNode.parentNode.parentNode.id ='confnum';
+      me.id ='confnum';
+      //console.log(me.getElementById('watch'));
+      console.log(me);
+
+
+
+      //cheating - there are only one of each of these so i can start searching at document. 
+      document.getElementById('watch_check').checked = false;
+      document.getElementById('rec_check').checked = false;
+      document.getElementById('mg_check').checked = false;
+      document.getElementById('vip_check').checked = false;
+      document.getElementById('cert_check').checked = false;
+      
       // clear out the leg rows to make the input thing ready to go for the next one 
-      //first 4 rows are headers... 
-      for (var j = row.parentNode.parentNode.parentNode.parentNode.rows.length;j > 4; j--) {
-        console.log(j,row.parentNode.parentNode.parentNode.parentNode.rows[j-1]);
-        var elem = row.parentNode.parentNode.parentNode.parentNode.rows[j-1];
+      //first 4 rows are headers...
+
+      for (var j = row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rows.length;j > 4; j--) {
+        console.log(j,row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rows[j-1]);
+        var elem = row.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rows[j-1];
         elem.parentNode.removeChild(elem);
       }
       // should reset the buttons and setup times here, as well 
       document.getElementById('setup_time').value = 15;
+      
+      copyfields();
+
     } else {
       console.log("can't dup a dup'ed conference based on the name");
     }
@@ -93,6 +136,10 @@ function killpreflight(thing) {
 
 // show or hide the note entry field
 function noteshower(thing) {
+    var elem = this.parentNode.parentNode.parentNode.parentNode.getElementsByTagName('tr')[1];
+    var x = elem.
+    x[1].style.display="inline";
+
     var elem = thing.parentNode.parentNode.parentNode.parentNode; 
     var x = elem.getElementsByTagName('tr');
     x[1].style.display="inline";
@@ -101,6 +148,17 @@ function notehider(thing) {
     var elem = thing.parentNode.parentNode.parentNode.parentNode; 
     var x = elem.getElementsByTagName('tr');
     x[1].style.display="none";
+}
+function rowmover(ident) {
+  var list = document.getElementsByTagName("div");    // Get the <ul> element to insert a new node
+  console.log('list of rows :');
+  console.log(list);
+  console.log(typeof(list));
+  list.forEach(myfunction);
+  function myfunction(item,index) {
+    console.log('item',item);
+  }
+//  list.insertBefore(newItem, list.childNodes[0]); 
 }
 
 //  these are for site alias rows
@@ -115,26 +173,14 @@ function deleteRow(row) {
 //    var i=row.parentNode.rowIndex;
 // this deletes a row in the alias table
     var i= row.parentNode.parentNode.parentNode.rowIndex;
-    console.log('i',i);
 
-    console.log(row.parentNode.parentNode.id); // the td
-    console.log(row.parentNode.parentNode.rows); // the td
-    console.log(row.parentNode.parentNode.parentNode.id); // the tr
-    console.log(row.parentNode.parentNode.parentNode.rows); // the tr
-    console.log(row.parentNode.parentNode.parentNode.parentNode.id); // the tr
-    console.log(row.parentNode.parentNode.parentNode.parentNode); // the tr
-    console.log(row.parentNode);
-//    console.log(row.parentNo00ide.parentNode.parentNode.rows(i)); // the tr
-    console.log(row.parentNode.parentNode.parentNode.rowIndex);
-//    row.parentNode.parentNode.parentNode.parentNode.deleteRow(i); // the tr
 //if this doesn't work, it might be because it needs to be offset by the number of rows
 // in the header (4)
-//anyways it works 
 try{ 
   row.parentNode.parentNode.parentNode.parentNode.deleteRow(i); 
 }
 catch(err) {
-//  console.log('this error ',err);
+//anyways it works 
   row.parentNode.parentNode.parentNode.parentNode.deleteRow(i-4); 
 }
 
@@ -148,7 +194,8 @@ catch(err) {
 //    document.getElementById('confTable').deleteRow(i);
 }
 function insRow(thing) {
-  console.log('thing.id',thing.id);
+//  console.log('thing.id',thing.id);
+//  console.log('thing',thing);
 
     var x=document.getElementById('confTable');
        // deep clone the targeted row
@@ -157,8 +204,8 @@ function insRow(thing) {
        // get the total number of rowEYGSLTD - UK-London-25CP_18_M10n
     var len = x.rows.length;
        // set the innerHTML of the first row 
-    console.log( document.getElementById('aliasinput').value);
-    console.log( document.getElementById('sitenameinput').value);
+//    console.log( document.getElementById('aliasinput').value);
+//    console.log( document.getElementById('sitenameinput').value);
 
     if ( isThingSaved({'id':document.getElementById('aliasinput').value}) ){
       console.log('getting saved thing...');
@@ -169,6 +216,7 @@ function insRow(thing) {
       });
     } else {
       console.log('saving thing...');
+//      console.log(document.getElementById('sitenameinput'));
       saveThing({
         'id':document.getElementById('aliasinput').value,
         'name':document.getElementById('sitenameinput').value,
@@ -176,28 +224,55 @@ function insRow(thing) {
         'result':'notes'
       });
     }
-    console.log(document.getElementById('sitenameinput'));
 
     // if it's a 4 digit numeric, add 'vc.ey.net' for a full alias in the alias column
     new_row.cells[0].innerHTML   = testAlias( document.getElementById('aliasinput').value);
 
     // build a spiffy audio cel with an icon and the phone number for dialing 
-    if (document.getElementById('aliasinput').value == 'audio') {
+    if (document.getElementById('aliasinput').value === 'audio') {
         new_row.cells[0].innerHTML   = phone_icon;
         console.log('bridge',document.getElementById('bridge').value);
+        // numbers taken from alexander's spreadsheet
         if (document.getElementById('bridge').value == "den_cms_01"
           || document.getElementById('bridge').value == "den_cms_02" ) {
-          new_row.cells[0].innerHTML   += denver_pgi;
+          new_row.cells[0].innerHTML   += denver_pgi1;
         }
         if (document.getElementById('bridge').value == "lon_cms_01"
           || document.getElementById('bridge').value == "lon_cms_02" 
           || document.getElementById('bridge').value == "lon_cms_03" 
           || document.getElementById('bridge').value == "lon_cms_04" ) {
-          new_row.cells[0].innerHTML   += london_pgi;
+          new_row.cells[0].innerHTML   += london_pgi1;
+        }
+        if (document.getElementById('bridge').value == "lon_8710_1"
+          || document.getElementById('bridge').value == "lon_8710_2"
+          || document.getElementById('bridge').value == "lon_8510" ) {
+          new_row.cells[0].innerHTML   += london_pgi2;
+        }
+        if (document.getElementById('bridge').value == "den_8710_1"
+          || document.getElementById('bridge').value == "den_8710_2" 
+          || document.getElementById('bridge').value == "den_8710_3" 
+          || document.getElementById('bridge').value == "den_8510" ) {
+          new_row.cells[0].innerHTML   += denver_pgi2;
+        }
+        if (document.getElementById('bridge').value == "aus_4210") {
+          new_row.cells[0].innerHTML   += aus_pgi;
+        }
+        if (document.getElementById('bridge').value == "ffm_8510") {
+          new_row.cells[0].innerHTML   += ffm_pgi;
+        }
+        if (document.getElementById('bridge').value == "scs_8510") {
+          new_row.cells[0].innerHTML   += scs_pgi;
+        }
+        if (document.getElementById('bridge').value == "sgm_mcu") {
+          new_row.cells[0].innerHTML   += sgm_pgi;
+        }
+        if (document.getElementById('bridge').value == "ind_4210") {
+          new_row.cells[0].innerHTML   += ind_pgi;
         }
 
+
         // thi is the dial info no validation done at all 
-        new_row.cells[1].innerHTML   = "<strong>" + document.getElementById('sitenameinput').value + "</strong>";
+        new_row.cells[1].innerHTML   = "<span class='szLarge'><strong>" + document.getElementById('sitenameinput').value + "</strong></span>";
     } else {
         new_row.cells[1].innerText   = document.getElementById('sitenameinput').value;
     }
@@ -228,16 +303,24 @@ function dog_notes  (thing) {
                                              minute: "numeric"});
     // make the notes visible... 
     var elem = thing.parentNode.parentNode.parentNode.parentNode.parentNode; 
+//    console.log(elem);
+
     var x = elem.getElementsByTagName('tr');
-    console.log(x);
+//    console.log(x);
 //    x[2].cells[0].children[0].innerText = "lkjlkjlj";
-    console.log(x[2].cells[0].children[0].innerText);
-    console.log(x[1].cells[0].childNodes[1].childNodes[6].value);
+//    console.log(x[2].cells[0].children[0].innerText);
+//    console.log(x[1].cells[0].childNodes[1].childNodes[6].value);
+
+// append the current note to the cumullative - should find a better way to find this.. 
+//    xx[2].cells[0].children[0].innerText += 
 
     x[2].cells[0].children[0].innerText += 
       time  + ' ' 
       + x[1].cells[0].childNodes[1].childNodes[8].value + "\n";
-   document.getElementById("note_entry").value = '';
+//   document.getElementById("note_entry").value = '';
+    //x[1].cells[0].childNodes[1].childNodes[8].value  = '';
+    //notehider(thing);
+    elem.getElementById("note_entry").value = '';
 }
 
 //whenever you feel like it, copy the bits from the input fields to the display parts. Handy for "onchange" or "onexit" handlers

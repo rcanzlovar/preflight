@@ -576,8 +576,7 @@ html, body, #wrapper {
 <span id='watch' style="float:right;"></span>
 <span id='mg' style="float:right;"></span>
 
-  <input type='submit' onclick="showHide(this);" value="note"
-  style="width:20px; float:left;background:url(http://ccotex.com/wp-content/uploads/2014/11/interview-lg-icon.png);" alt="show note entry" style=''>
+  <a href='#' onclick="noteshower(this);"><img src="http://ccotex.com/wp-content/uploads/2014/11/interview-lg-icon.png" alt="show note entry" style='width:20px; float:left;'></a>
 
   <a href='#' onclick="killpreflight(this);"><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/delete-icon.png' alt='Delete' style='width:20px; float: left;'></a>
   <a href="#" onclick='whosyrdada2(this);'><img src='http://icons.iconarchive.com/icons/dryicons/simplistica/128/add-icon.png' alt='Add' style='width:20px; float: left;'></a>
@@ -628,11 +627,10 @@ html, body, #wrapper {
   Paste the video conference number into the <em>VC#</em> field and then select the bridge from the dropdown. . This will begin to populate the conference summary with dial strings and links. </p>
 <p>Start time can be copied in directly from Onward or typed manually typed using the format 
   <strong>mm/dd/yyyy hh:mm></strong>. End time can be entered as either like 12:30 or 1230, it will be properly formatted. Setup time defaults to 15 minutes, and will revert when you save a conference.</p>
-<p>Site Alias should have the 4 digit room alias, IP address or E.164 string for a TP room. This can be typed in partially, and if unique, the full name will be retrieved. These are stored locally in the browser local storage. Entering a new room will will attempt to update this list. If no previously saved info exists, we create a new store, but if you add a room that is already in the list, you can create a duplicate. Another A function has been provided which will allow you to remove an alias, see the control panel below. </p>
+<p>Site Alias should have the 4 digit room alias, IP address or E.164 string for a TP room. This can be typed in partially, and if unique, the full name will be retrieved. These are stored locally in the browser local storage. Entering a new room will will attempt to update this. A function has been provided which will allow you to remove an alias, see the control panel below. </p>
 <p>Note that I have provided a set of initial room aliases. These are preloaded form witin 
 the script. New rooms will be automatically added as time they're used. Rooms that have been 
 added in error can be manually deleted using the delete alias button in the control panel. </p>
-
 
 
 </div>

@@ -30,6 +30,15 @@
   .sizeNormal  { font-size: 12px; }
   .sizeLarge   { font-size: 13px; }
   .sizeHuge   { font-size: 15px; }
+
+  .szXXSmall   { font-size: xx-small; }
+  .szXSmall   { font-size: x-small; }
+  .szSmall   { font-size: small; }
+  .szsmaller   { font-size: smaller; }
+  .szLarger   { font-size: larger; }
+  .szLarge   { font-size: large; }
+  .szXLarge   { font-size: x-large; }
+  
   .bold { font-weight: bold; }
   .italic { font-style: italic; }
   .normal {font-weight: normal;}
