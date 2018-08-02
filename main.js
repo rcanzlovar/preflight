@@ -31,6 +31,58 @@ const scs_pgi = " <strong>9#18662595440</strong>";
 const sgm_pgi = " <strong>550#66549138</strong>"; 
 const ind_pgi = " <strong>1001163100238</strong>"; 
 
+setInterval(myMethod, 5000);
+
+function myMethod( )
+{
+  /*
+  var myColor = document.getElementById('conferencesummary').style.backgroundColor;
+  if (myColor === 'rgb(255, 255, 160)')  {
+      document.getElementById('conferencesummary').style.backgroundColor = 'rgb(255, 160, 255)';
+  } else {
+      document.getElementById('conferencesummary').style.backgroundColor = 'rgb(255, 255, 160)';
+  }
+  var thingthing = document.getElementById('cumulative');
+  console.log(thingthing);
+  console.log(myColor,"foo foo foo");
+
+*/
+
+
+
+var div = document.getElementById('cumulative');
+console.log(div);
+console.log(div[0]);
+  var divs = div.getElementsByTagName('div');
+  var divArray = [];
+  for (var i = 0; i < divs.length; i += 1) {
+//    divArray.push(divs[i].innerHTML);
+    if (divs[i].id.startsWith("vcn")) {
+      var thing = document.getElementById(divs[i].id);
+      console.log(thing);
+      console.log(thing.getElementsByTagName('div'));
+
+      var divvy = divs[i];
+      console.log(divvy);
+
+      var myotherthing = document.getElementById(divvy);
+      console.log(myotherthing);
+
+      var yColor = divvy.style.backgroundColor;
+      if (yColor === 'rgb(255, 255, 160)')  {
+          divvy.style.backgroundColor = 'rgb(255, 160, 255)';
+      } else {
+          divvy.style.backgroundColor = 'rgb(255, 255, 160)';
+      }
+
+    }
+  }
+  // alert(myColor);
+  //this will repeat every 5 seconds
+  //you can reset counter here
+}
+
+
 // # # # # # # # # # # # # # # # # # # # # # # # # 
 // this is the function that is called when you add a completed conference to the cumulative 
 // this moves  copy of the currently built preflight to the botton
@@ -45,6 +97,7 @@ function whosyrdada2(row)
           console.log('a breakthrough');
           console.log(me);
       }
+
 
     console.log(row.parentNode.id); // bingodd
     console.log(row.parentNode.parentNode.id); // bingo
@@ -82,7 +135,6 @@ function whosyrdada2(row)
       me.id ='confnum';
       //console.log(me.getElementById('watch'));
       console.log(me);
-
 
 
       //cheating - there are only one of each of these so i can start searching at document. 
@@ -462,34 +514,33 @@ confnum@lync.amer.joinbyvideo.com
   // really need to do the math to subtract the setup time so we display two real times. 
 //  document.getElementById('meeting_setup').innerText  = document.getElementById('setup_time').value;
   document.getElementById('meeting_start').innerText  = document.getElementById('start_time').value;
+  var startDateTime = document.getElementById('start_time').value;
+  var endTime =  document.getElementById('end_time').value;
 
-// check the end time , if its 9999 then format it as 99:99 in the output 
-      function xtestAlias(thing) {  
-        var re = /(\d{2})(\d{2})/;  
+//  var endDateTime = getEndTIme({'start':startDateTime,'end':endTime});
 
-        var OK = re.exec(thing);  
-        if (OK)  
-        {
-         // we matched!  
-          //0 = whole string, 1 & 2 are the bits 
-          return(OK[1]+':'+OK[2]);
-        }
-        else
-          return(thing);
-      }   
 
-   document.getElementById('end_time').value =  document.getElementById('meeting_end').innerText  = testTime(document.getElementById('end_time').value);
-    testTime(document.getElementById('end_time').value); 
+
+  document.getElementById('end_time').value =  
+    document.getElementById('meeting_end').innerText  = 
+    testTime(document.getElementById('end_time').value);
   // now that we have it, share it to the original place 
 
 
 
   var endDate = document.getElementById('start_time').value;
 
-  var startdate = new Date(endDate);
 
+
+
+  var startdate = new Date(endDate);
+  console.log(startdate);
+  console.log(Date.valueOf(startdate));
+
+//  document.getElementById('meeting_start').innerHTML = Date.string(startdate);
+//  startdate.toLocaleTimeString('en-US', { hour12: false ,hour: "numeric", 
   document.getElementById('meeting_start').innerHTML = 
-  startdate.toLocaleTimeString('en-US', { hour12: false ,hour: "numeric", 
+    startdate.toLocaleDateString('en-US', { hour12: false ,hour: "numeric", 
                                              minute: "numeric"});
 
   var durationInMinutes = document.getElementById('setup_time').value 
@@ -500,6 +551,9 @@ confnum@lync.amer.joinbyvideo.com
   startdate.setMinutes(startdate.getMinutes() - durationInMinutes);
 
 
+var nowDate = new Date();
+console.log(nowDate);
+console.log(Date.parse(nowDate) - Date.parse(startdate));
 // get the date after winding the clock so it works right around midnight
 
   document.getElementById('meeting_date').innerText  =  
@@ -509,6 +563,20 @@ confnum@lync.amer.joinbyvideo.com
 
   document.getElementById('meeting_setup').innerHTML = startdate.toLocaleString('en-US', { hour12: false,hour: "numeric", 
                                              minute: "numeric"} );
+}
+
+  function getEndTime(thing) {
+    if (typeof thing === 'array'
+      || typeof thing === 'object') {
+      console.log(typeof(thing['start']));
+    }
+
+
+
+  }
+
+function getEndTime (thing) {
+  return(thing);
 }
 
 // is this even used?
